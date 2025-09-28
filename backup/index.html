@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPERBALL 3D - Willkommen</title>
+    
+    <link rel="icon" type="image/png" href="icons/fav.png" sizes="512x512">
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* Spezifische Stile für die Intro-Seite */
+        body {
+            /* Hintergrundfarbe vom Spiel übernehmen */
+            background-color: #1a1a2e; 
+        }
+
+        #intro-page {
+            width: 600px;
+            height: 600px;
+            padding: 40px;
+            border: 5px solid #005fcc;
+            box-shadow: 0 0 30px rgba(0, 95, 204, 0.8);
+            background-color: #000018;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #intro-page h1 {
+            font-size: 3.5em;
+            color: #ffcc00; /* Goldgelb */
+            margin-bottom: 20px;
+        }
+
+        #intro-page h2 {
+            font-size: 1.8em;
+            color: #00ff7f; /* Helles Grün */
+            margin-bottom: 10px;
+        }
+
+        #intro-page p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 15px auto;
+        }
+
+        #start-button {
+            padding: 15px 40px;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff4d4d; /* Rot */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        #start-button:hover {
+            background-color: #cc3939;
+            transform: scale(1.05);
+        }
+        
+        #steuerung {
+            border: 1px solid #005fcc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="intro-page">
+        <div>
+            <h1>SUPERBALL 3D</h1>
+            <h2>Willkommen beim Geschicklichkeitstest!</h2>
+        </div>
+
+        <div id="erklaerung">
+            <h2>Spielprinzip</h2>
+            <p>
+                Dein **Superball** muss so lange wie möglich den **fallenden Bällen** ausweichen.
+                Mit jedem überlebten Intervall **steigt das Level** und die Geschwindigkeit der fallenden Bälle erhöht sich.
+                Wähle deinen Ball und versuche, einen neuen **Highscore** aufzustellen!
+            </p>
+            
+            <div id="steuerung">
+                <h2>Steuerung</h2>
+                <p>
+                    **PC:** Pfeiltasten **←** und **→** (Links/Rechts)
+                </p>
+                <p>
+                    **Mobil:** Tippe auf die linke oder rechte Seite des Bildschirms.
+                </p>
+            </div>
+        </div>
+
+        <a id="start-button" href="sb.html">SPIEL STARTEN</a>
+    </div>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registriert: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('ServiceWorker Registrierung fehlgeschlagen: ', error);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>

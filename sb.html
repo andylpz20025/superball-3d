@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPERBALL</title>
+    
+    <link rel="icon" type="image/png" href="icons/fav.png" sizes="512x512">
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+
+    <div id="game-container">
+        
+        <div id="threejs-canvas-container"></div>
+        
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+        
+        <div id="stats">
+            <span id="timer">00:00:00</span>
+            <span id="level">Level: 1</span>
+        </div>
+
+        <div id="intro-screen" class="overlay">
+            <h1 id="intro-title">SUPERBALL</h1>
+            <select id="ball-selection">
+                <option value="superball.glb">1 - Superball (Schwarz)</option>
+                <option value="superball_w.glb">2 - Superball (Weiß)</option>
+                <option value="superball_t.glb">3 - Superball (Transparent)</option>
+            </select>
+            <button id="reset-highscore-button" onclick="superballGame.resetHighscore();">Highscore löschen</button>
+            <p id="intro-start-text">START</p>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h2>SCHADE!</h2>
+            <button onclick="superballGame.reset();">NOCHMAL</button>
+        </div>
+
+        <div id="touch-controls">
+            <div id="touch-left"></div>
+            <div id="touch-right"></div>
+        </div>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registriert: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('ServiceWorker Registrierung fehlgeschlagen: ', error);
+                    });
+            });
+        }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
